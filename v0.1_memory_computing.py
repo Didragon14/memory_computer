@@ -1,27 +1,33 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
-# Мой первый репозиторий)) через git
-# Пробую все эти плющки с git add 'name file';  git status и т.д.
+import sys
 
-def memory_computer():
-    begin = int(input('Добро пожаловать, введите 1 чтобы начать 0 чтобы не начинать: '))
+
+class Memory:
+    # Инициализация переменных
+    def __init__(self, char):
+        self.char = char
+
+    # Свойство класса - подсчет символов в байтах
+    def byte_size(self):
+        return sys.getsizeof(self.char)
+
+    # Свойство класса - подсчет сиволов в битах
+    def bit_size(self):
+        return sys.getsizeof(self.char) * 8
+
+
+def input_char():
+    while True:
+        char = input('Введите символы для подсчета их битов и байтов: ')
+        if not char:        # Пустая строка, выход с цикла
+            break
+
+        mem = Memory(char)
+        byte = mem.byte_size()
+        bit = mem.bit_size()
+        
+        print(f'Биты: {bit}\
+             \nБайты: {byte}')
     
-    if begin == 1:
-        while begin != 0:
-
-            word = input('\nВведите символы для определения объёма памяти: ')
-
-            # Биты
-            bits = len(word) * 8
-            # Байты
-            bytes = bits // 8
-            print(f'\nВ символах {word} \nБиты: {bits} \nБайты: {bytes} ')
-            print('\nДля прекращения программы напишите: 0')
-
-            # Конец программы
-            if word in '0':
-                break
-    else:
-        print('До свидания! ')
-
-memory_computer()
+input_char()
